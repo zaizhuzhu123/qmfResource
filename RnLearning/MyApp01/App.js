@@ -38,7 +38,7 @@ export default class App extends Component<{}> {
                     1111
                 </Text>
                 <Text style={styles.welcome}>
-                    Welcome to React Native!dfgdfgdf2
+                    Welcome to React Native!dfgdfgdf2333311
                 </Text>
                 <Text style={styles.instructions}>
                     To get started, edit App.js
