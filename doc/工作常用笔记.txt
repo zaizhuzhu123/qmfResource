@@ -1,0 +1,80 @@
+sudo  ------  提升至管理权限
+sudo reboot  ------  重启系统
+su  用户名----- 切换用户
+ps -ef|grep  java ------------ 查看java程序是否启动
+netstat -apn  -------- 查看程序端口
+sh fpi.sh(程序名字) ------重启相应项目
+route --------   查看路由
+ping (地址(www.baidu.com)) -c 次数 -------- 执行ping的通讯次数
+
+几条命令搞定adb，几条搞定adb
+android开发板端： 
+启动adb     :     start      adbd 
+重设adbd端口： 
+#stop adbd
+#setprop service.adb.tcp.port 5555
+#start adbd
+#ifconfig eth0 
+设置临时IP： #busybox  ifconfig eth0 192.168.0.59 netmask 255.255.255.0 设置临时网关： #busybox  route add default gw 192.168.0.1 设置临时MAC地址： #busybox ifconfig eth0 hw ether 00:77:77:00:00:88 
+
+Windows端： 
+解决adb端口被占用问题： 打开命令提示符，输入：      
+netstat -ano | findstr "5037"
+显示：    TCP    127.0.0.1:5037         0.0.0.0:0              LISTENING       5776
+输入： taskkill /F /IM 5776
+adb kill-server
+adb disconnect 192.168.8.59
+adb connect 192.168.8.59
+adb devices
+
+SVN:
+文档路径 http://10.10.100.236/svn/code
+文档路径 http://10.10.100.236/svn/doc
+账号:dengwanwei 密码 dww456
+
+禅道地址:
+http://10.10.100.236:82
+账号:dww 密码:123456
+
+项目编译路径:
+D:\MyJob\MyCode\20.components\attnio
+D:\MyJob\MyCode\90.fpi\GdbCommon
+命令:m3 clen install
+
+
+http://localhost:8080/web/rest/sec/fetchAccount?map=%7B%221%22%3A%22%E6%81%…me%22%3A1493251200000%2C%22names%22%3A%22%E6%B0%B4%E7%94%B5%E8%B4%B9%22%7D
+
+
+public String createSendSiteName(String siteName) {
+		StringBuffer newStr = new StringBuffer();
+		char strs[] = siteName.toCharArray();
+		if (strs != null && strs.length > 0) {
+			for (int i = 0; i < strs.length; i++) {
+				char str = strs[i];
+				if ((str + "").matches("([\\u4e00-\\u9fa5]|[a-z]|[A-Z]|[0-9])")) {
+					newStr.append(str);
+				} else {
+					newStr.append("");
+				}
+			}
+		}
+		return newStr.toString();
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(new HappydayTimerTask().createSendSiteName("环球?中心aA154ASDASasdasd"));
+	}
+	
+web 管理地址 localhost:80 账号 admin 密码 demonstrate	
+
+新环境使用方法 
+1、在trunk/sd/sdjs下 编译全部代码 会在 assembly-target 下生产web 文件夹
+2、将其拷入tomcat webapp中 
+3、然后把D:\web\ums-server\works\uep\uep1\runtime 云端数据拷入就可以运行了
+
+mssql密码 
+
+公众号账号
+chinafmr@163.com	fme123456
+holyvline			MYhz@39595311
+13326215311 		hlwl20170910
