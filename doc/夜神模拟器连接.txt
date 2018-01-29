@@ -1,3 +1,12 @@
 adb connect 127.0.0.1:62001 //夜神模拟器连接adb
+react-native init 工程名称
 react-native start //开启rn服务器
 react-native run-android
+
+在使用WebStorm工具搭建Node.js文件时，提示unresolved function or method require()的错误，
+Settings-Node.js and npm-Enable
+
+ReactNative 代码智能提醒 （Webstrom live template）
+git clone https://github.com/virtoolswebplayer/ReactNative-LiveTemplate
+方法一
+file -> import settings -> ReactNative.jar
