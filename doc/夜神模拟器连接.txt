@@ -2,6 +2,7 @@ adb connect 127.0.0.1:62001 //夜神模拟器连接adb
 react-native init 工程名称
 react-native start //开启rn服务器
 react-native run-android
+npm install react-native-cli --save
 
 在使用WebStorm工具搭建Node.js文件时，提示unresolved function or method require()的错误，
 Settings-Node.js and npm-Enable
@@ -10,3 +11,28 @@ ReactNative 代码智能提醒 （Webstrom live template）
 git clone https://github.com/virtoolswebplayer/ReactNative-LiveTemplate
 方法一
 file -> import settings -> ReactNative.jar
+
+轮播广告
+npm install react-native-swiper --save
+npm i react-native-swiper2 --save
+安装第三方框架 native-base
+npm install native-base --save
+native-base 依赖
+//图标库
+npm install react-native-vector-icons --save
+添加依赖到原生工程 需要创建目录Resources
+react-native link react-native-vector-icons
+
+//watchman
+yarn config set registry https://registry.npm.taobao.org --global
+yarn config set disturl https://npm.taobao.org/dist --global
+yarn install
+yarn remove 删除命令
+yarn add watchman
+
+"react": "^16.0.0-alpha.12",
+
+异常处理
+Error:Execution failed for task ':app:processDebugResources'.
+> java.io.IOException: Could not delete path 
+解决方法 进入项目文件夹下手动删除android\app\build文件夹内的所有文件后再次运行

@@ -11,11 +11,13 @@ import {
     Text,
     View,
     Dimensions,
-    TextInput,
-    Button,
     ListView,
-    Alert, TouchableHighlight, StatusBar, Image, RefreshControl
+    Alert, TouchableHighlight, Image, RefreshControl
 } from 'react-native';
+import Detail from "./Detail";
+import Swiper from "react-native-swiper";
+import {Button, Container, Content, Footer, FooterTab, Header, Input, Icon, InputGroup, Item} from "native-base";
+
 
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\n' +
@@ -70,43 +72,68 @@ export default class Home extends Component<{}> {
 
     render() {
         return (
-            <View style={styles.container}>
-                <StatusBar backgroundColor={'#41B4DB'} // 设置背景色为蓝色
-                           barStyle={'default'} // 设置默认样式
-                           networkActivityIndicatorVisible={true}
-                    // 显示正在请求网络的状态
-                ></StatusBar>
-                <View style={styles.searchbar}>
-                    <TextInput style={{width: '80%'}}
-                               placeholder="搜索关键字"
-                               onChangeText={(text) => {
-                                   this.state.searchText = text
-                               }}></TextInput>
-                    <Button title="点击搜索" onPress={() => {
-                        Alert.alert("搜索", this.state.searchText);
-                    }}></Button>
-                </View>
-                <View style={styles.content}>
-                    <ScrollView ref="scrollView" style={{flexDirection: 'row'}}
-                                horizontal={true}
-                                showsHorizontalScrollIndicator={false}
-                                pagingEnabled={true}>
-                        {this.state.adImage.map((ad, index) => {
-                            return (<TouchableHighlight key={index} onPress={this._clickScroll}>
-                                <Image style={[styles.ad]} source={ad.url}></Image>
-                            </TouchableHighlight>)
-                        })}
-                    </ScrollView>
-                    <ListView dataSource={this.state.goods}
-                              renderRow={this._renderRow}
-                              renderSeparator={this._renderSeperator}
-                              refreshControl={this._renderRefreshControl()}
-                    />
-                </View>
-                <View style={styles.footer}>
-                    <Text>底部</Text>
-                </View>
-            </View>
+
+            <Container>
+                <Header searchBar rounded>
+                    <Item>
+                        <Icon name="smile-o"/>
+                        <Input placeholder="Search"/>
+                        <Icon name="smile-o"/>
+                    </Item>
+                    <Button transparent>
+                        <Text>Search</Text>
+                    </Button>
+                </Header>
+                <Content padder>
+                    < View
+                        style={styles.content
+                        }>
+                        <
+                            Swiper
+                            loop={true}
+                            heigh={190}
+                            autoPlay={true}>
+                            {this.state.adImage.map((ad, index) => {
+                                return (<TouchableHighlight key={index} onPress={this._clickScroll}>
+                                    <Image style={[styles.ad]} source={ad.url}></Image>
+                                </TouchableHighlight>)
+                            })
+                            }
+                        </Swiper>
+                        <ScrollView ref="scrollView" style={{flexDirection: 'row'}}
+                                    horizontal={true}
+                                    showsHorizontalScrollIndicator={false}
+                                    pagingEnabled={true}>
+                            {this.state.adImage.map((ad, index) => {
+                                return (<TouchableHighlight key={index} onPress={this._clickScroll}>
+                                    <Image style={[styles.ad]} source={ad.url}></Image>
+                                </TouchableHighlight>)
+                            })}
+                        </ScrollView>
+                        <ListView dataSource={this.state.goods}
+                                  renderRow={this._renderRow}
+                                  renderSeparator={this._renderSeperator}
+                                  refreshControl={this._renderRefreshControl()}
+                        />
+                    </View>
+                </Content>
+                <Footer>
+                    <FooterTab>
+                        <Button>
+                            <Text>Apps</Text>
+                        </Button>
+                        <Button>
+                            <Text>Camera</Text>
+                        </Button>
+                        <Button active>
+                            <Text>Navigate</Text>
+                        </Button>
+                        <Button>
+                            <Text>Contact</Text>
+                        </Button>
+                    </FooterTab>
+                </Footer>
+            </Container>
         );
     }
 
@@ -149,7 +176,14 @@ export default class Home extends Component<{}> {
 
     _renderRow = (rowData, rowHasChanged) => {
         return (<TouchableHighlight onPress={() => {
-            Alert.alert("列表", "点击列表");
+            const navigator = this.props.navigator;
+            if (navigator) {
+                navigator.push({
+                    name: 'detail', component: Detail, params: {
+                        title: rowData.title
+                    }
+                });
+            }
         }}><View style={{
             alignItems: 'center',
             height: 50,
@@ -226,7 +260,7 @@ const styles = StyleSheet.create({
     content: {
         position: 'absolute',
         top: 50,
-        bottom: 50,
+        bottom: 0,
         backgroundColor: '#fff',
         width: Dimensions.get('window').width,
         justifyContent: 'center',
