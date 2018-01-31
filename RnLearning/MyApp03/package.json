@@ -13,7 +13,8 @@
     "react-native-deprecated-custom-components": "^0.1.1",
     "react-native-swiper": "^1.5.13",
     "react-native-swiper2": "^2.0.7",
-    "react-native-vector-icons": "^4.5.0"
+    "react-native-vector-icons": "^4.5.0",
+    "react-navigation": "^1.0.0-beta.27"
   },
   "devDependencies": {
     "babel-jest": "22.1.0",

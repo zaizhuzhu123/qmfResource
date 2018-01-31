@@ -12,7 +12,7 @@ import {
     View,
     Dimensions,
     ListView,
-    Alert, TouchableHighlight, Image, RefreshControl
+    Alert, TouchableOpacity, Image, RefreshControl
 } from 'react-native';
 import Detail from "./Detail";
 import Swiper from "react-native-swiper";
@@ -33,7 +33,6 @@ const ds = new ListView.DataSource({ // 创建ListView.DataSource 数据源
 
 
 export default class Home extends Component<{}> {
-
     /**
      * 构造函数
      * @param props 上一级传递过来的参数
@@ -41,7 +40,7 @@ export default class Home extends Component<{}> {
     constructor(props) {
         super(props);
         let goods = [];
-        for (let i = 0; i < 50; i++) {
+        for (let i = 0; i < 20; i++) {
             goods.push({
                 image: require("./images/scroll1.jpg"),
                 title: "商品" + (i + 1),
@@ -74,10 +73,7 @@ export default class Home extends Component<{}> {
 
     render() {
         if (this.state.swiperShow) {
-
-
             return (
-
                 <Container>
                     <Header searchBar rounded>
                         <Item>
@@ -99,9 +95,9 @@ export default class Home extends Component<{}> {
                                 autoplayTimeout={2}
                             >
                                 {this.state.adImage.map((ad, index) => {
-                                    return (<TouchableHighlight key={index} onPress={this._clickScroll}>
+                                    return (<TouchableOpacity key={index} onPress={this._clickScroll}>
                                         <Image style={[styles.ad]} source={ad.url}></Image>
-                                    </TouchableHighlight>)
+                                    </TouchableOpacity>)
                                 })
                                 }
                             </Swiper>
@@ -197,9 +193,9 @@ export default class Home extends Component<{}> {
 
     _scrollContent() {
         this.state.adImage.map((ad, index) => {
-            return (<TouchableHighlight key={index} onPress={this._clickScroll}>
+            return (<TouchableOpacity key={index} onPress={this._clickScroll}>
                 <Image style={[styles.ad]} source={{uri: ad.url}}></Image>
-            </TouchableHighlight>)
+            </TouchableOpacity>)
         })
     }
 
@@ -233,15 +229,9 @@ export default class Home extends Component<{}> {
 
 
     _renderRow = (rowData, rowHasChanged) => {
-        return (<TouchableHighlight onPress={() => {
-            const navigator = this.props.navigator;
-            if (navigator) {
-                navigator.push({
-                    name: 'detail', component: Detail, params: {
-                        title: rowData.title
-                    }
-                });
-            }
+        return (<TouchableOpacity onPress={() => {
+            const {navigate} = this.props.navigation;
+            navigate('Detail', {title: rowData.title})
         }}><View style={{
             alignItems: 'center',
             height: 50,
@@ -257,7 +247,7 @@ export default class Home extends Component<{}> {
                 <Text> {rowData.des}</Text>
             </View>
         </View>
-        </TouchableHighlight>);
+        </TouchableOpacity>);
     }
 
     _clickScroll = () => {

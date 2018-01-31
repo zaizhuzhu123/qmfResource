@@ -5,10 +5,52 @@
  */
 
 import React, {Component} from 'react';
-import {Navigator} from "react-native-deprecated-custom-components";
-import Main from "./Main";
+import More from "./More";
+import {StackNavigator} from "react-navigation";
+import Home from "./Home";
+import Detail from "./Detail";
 
-
+export const SimpleApp = StackNavigator({
+    Home: {
+        screen: Home, navigationOptions: {
+            title: '首页',
+            headerStyle: {
+                display: 'none'
+            },
+            tabBarIcon: ({tintColor, focused}) => (
+                <IconFont
+                    font="&#xe7d8;"
+                    style={{color: tintColor, fontSize: 26}}
+                />
+            ),
+        },
+    },
+    More: {
+        screen: More, navigationOptions: ({navigation}) => ({
+            title: '更多',
+            tabBarIcon: ({tintColor, focused}) => (
+                <IconFont
+                    font="&#xe751;"
+                    style={{color: tintColor, fontSize: 26}}
+                />
+            )
+        }),
+    },
+    Detail: {
+        screen: Detail, navigationOptions: ({navigation}) => ({
+            title: '详情1 ',
+            tabBarIcon: ({tintColor, focused}) => (
+                <IconFont
+                    font="&#xe751;"
+                    style={{color: tintColor, fontSize: 26}}
+                />
+            )
+        }),
+    }
+}, {
+    initialRouteName: 'Home',
+    mode: 'card'
+});
 export default class App extends Component<{}> {
 
     /**
@@ -21,18 +63,6 @@ export default class App extends Component<{}> {
 
 
     render() {
-        return (
-            <Navigator initialRoute={{ //应用启动时加载的路由
-                name: 'main',
-                component: Main
-            }} configureScene={(route) => { //页面之间跳转的动画
-                return Navigator.SceneConfigs.HorizontalSwipeJump;
-            }}
-                       renderScene={(route, navigator) => {
-                           const Component = route.component;
-                           return <Component {...route.params} navigator={navigator}/>
-                       }}
-            />
-        );
+        return <SimpleApp/>
     }
 };

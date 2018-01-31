@@ -11,8 +11,7 @@ export default class More extends Component {
                 <Text>picker</Text>
                 <Picker style={{width: 200, height: 100}} selectedValue={this.state.pickerDefaultSelected}
                         onValueChange={(lang) => {
-                            this.state.pickerDefaultSelected = lang;
-                            Alert.alert(this.state.pickerDefaultSelected, null, null);
+                            this.setState({pickerDefaultSelected: lang})
                         }}>
                     <Picker.Item label="JAVA" value="java"/>
                     <Picker.Item label="JAVASCRIPT" value="javascript"/>

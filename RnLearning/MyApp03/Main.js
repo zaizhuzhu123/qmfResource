@@ -15,9 +15,9 @@ export default class Main extends Component {
             <View>
                 <More navigator={this.props.navigator}><Text>More</Text></More>
             </View>
-            <View>
-                <More2 navigator={this.props.navigator}><Text>More2</Text></More2>
-            </View>
+            {/*<View>*/}
+            {/*<More2 navigator={this.props.navigator}><Text>More2</Text></More2>*/}
+            {/*</View>*/}
         </ViewPagerAndroid>)
     }
 
