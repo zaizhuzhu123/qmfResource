@@ -6,51 +6,66 @@
 
 import React, {Component} from 'react';
 import More from "./More";
-import {StackNavigator} from "react-navigation";
-import Home from "./Home";
-import Detail from "./Detail";
+import {TabNavigator} from "react-navigation";
+import More2 from "./More2";
+import Icon from 'react-native-vector-icons/Ionicons';
+import {ModalStack} from "./Home";
 
-export const SimpleApp = StackNavigator({
-    Home: {
-        screen: Home, navigationOptions: {
-            title: '首页',
-            headerStyle: {
-                display: 'none'
-            },
+export const FrameApp = TabNavigator({
+    ModalStack: {
+        screen: ModalStack, navigationOptions: {
+            tabBarLabel: '首页',
             tabBarIcon: ({tintColor, focused}) => (
-                <IconFont
-                    font="&#xe7d8;"
-                    style={{color: tintColor, fontSize: 26}}
-                />
-            ),
-        },
+                <Icon name="ios-home-outline" size={20} style={{color: tintColor}}/>
+            )
+        }
     },
     More: {
-        screen: More, navigationOptions: ({navigation}) => ({
-            title: '更多',
+        screen: More, navigationOptions: {
+            tabBarLabel: '更多1',
             tabBarIcon: ({tintColor, focused}) => (
-                <IconFont
-                    font="&#xe751;"
-                    style={{color: tintColor, fontSize: 26}}
-                />
+                <Icon name="ios-keypad-outline" size={20} style={{color: tintColor}}/>
             )
-        }),
+        }
     },
-    Detail: {
-        screen: Detail, navigationOptions: ({navigation}) => ({
-            title: '详情1 ',
+    More2: {
+        screen: More2, navigationOptions: {
+            tabBarLabel: '更多2',
             tabBarIcon: ({tintColor, focused}) => (
-                <IconFont
-                    font="&#xe751;"
-                    style={{color: tintColor, fontSize: 26}}
-                />
+                <Icon name="ios-leaf-outline" size={20} style={{color: tintColor}}/>
             )
-        }),
+        }
     }
 }, {
-    initialRouteName: 'Home',
-    mode: 'card'
-});
+    tabBarPosition: 'bottom',
+    lazy: true, // 是否懒加载
+    initialRouteName: 'ModalStack',
+    swipeEnabled: true,
+    animationEnabled: true,
+    tabBarOptions: {
+        activeTintColor: 'red',
+        inactiveTintColor: 'gray',
+        showIcon: true,
+        style: {
+            height: 40,
+            zIndex: 0,
+            position: 'relative',
+            backgroundColor: 'white',
+        },
+        labelStyle: {
+            fontSize: 11,
+            paddingVertical: 0,
+            marginTop: -5
+        },
+        iconStyle: {
+            marginTop: -4
+        },
+        indicatorStyle: {
+            height: 0
+        }
+    }
+})
+
 export default class App extends Component<{}> {
 
     /**
@@ -63,6 +78,6 @@ export default class App extends Component<{}> {
 
 
     render() {
-        return <SimpleApp/>
+        return <FrameApp/>
     }
 };

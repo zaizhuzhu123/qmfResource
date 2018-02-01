@@ -6,7 +6,7 @@
 
 import React, {Component} from 'react';
 import {
-    Platform, ScrollView,
+    Platform,
     StyleSheet,
     Text,
     View,
@@ -18,6 +18,7 @@ import Detail from "./Detail";
 import Swiper from "react-native-swiper";
 import {Button, Container, Content, Footer, FooterTab, Header, Input, InputGroup, Item} from "native-base";
 import Icon from 'react-native-vector-icons/Ionicons';
+import {StackNavigator} from "react-navigation";
 
 
 const instructions = Platform.select({
@@ -73,8 +74,7 @@ export default class Home extends Component<{}> {
 
     render() {
         if (this.state.swiperShow) {
-            return (
-                <Container>
+            return (<Container>
                     <Header searchBar rounded>
                         <Item>
                             <Icon name="ios-search" size={20} style={{marginLeft: 10}}/>
@@ -102,38 +102,12 @@ export default class Home extends Component<{}> {
                                 }
                             </Swiper>
                         </View>
-                        {/*<ScrollView ref="scrollView" style={{flexDirection: 'row'}}*/}
-                        {/*horizontal={true}*/}
-                        {/*showsHorizontalScrollIndicator={false}*/}
-                        {/*pagingEnabled={true}>*/}
-                        {/*{this.state.adImage.map((ad, index) => {*/}
-                        {/*return (<TouchableHighlight key={index} onPress={this._clickScroll}>*/}
-                        {/*<Image style={[styles.ad]} source={ad.url}></Image>*/}
-                        {/*</TouchableHighlight>)*/}
-                        {/*})}*/}
-                        {/*</ScrollView>*/}
                         <ListView dataSource={this.state.goods}
                                   renderRow={this._renderRow}
                                   renderSeparator={this._renderSeperator}
                                   refreshControl={this._renderRefreshControl()}
                         />
                     </Content>
-                    <Footer>
-                        <FooterTab>
-                            <Button>
-                                <Text>Apps</Text>
-                            </Button>
-                            <Button>
-                                <Text>Camera</Text>
-                            </Button>
-                            <Button active>
-                                <Text>Navigate</Text>
-                            </Button>
-                            <Button>
-                                <Text>Contact</Text>
-                            </Button>
-                        </FooterTab>
-                    </Footer>
                 </Container>
             );
         } else {
@@ -151,19 +125,6 @@ export default class Home extends Component<{}> {
                         </Button>
                     </Header>
                     <Content>
-                        <View>
-
-                        </View>
-                        {/*<ScrollView ref="scrollView" style={{flexDirection: 'row'}}*/}
-                        {/*horizontal={true}*/}
-                        {/*showsHorizontalScrollIndicator={false}*/}
-                        {/*pagingEnabled={true}>*/}
-                        {/*{this.state.adImage.map((ad, index) => {*/}
-                        {/*return (<TouchableHighlight key={index} onPress={this._clickScroll}>*/}
-                        {/*<Image style={[styles.ad]} source={ad.url}></Image>*/}
-                        {/*</TouchableHighlight>)*/}
-                        {/*})}*/}
-                        {/*</ScrollView>*/}
                         <ListView dataSource={this.state.goods}
                                   renderRow={this._renderRow}
                                   renderSeparator={this._renderSeperator}
@@ -271,24 +232,6 @@ export default class Home extends Component<{}> {
      * 组件卸载中执行
      */
     componentWillUnmount() {
-        // clearInterval(this.interval);
-    }
-
-    _startTimer() {
-        // this.interval = setInterval(() => { // 使用 setInterval()创建定时器
-        //     let nextPage = this.state.scrollView.currentPage + 1;
-        //     if (nextPage >= 4) {
-        //         nextPage = 0; // 如果已经滚动到最后一页，下次返回第一页
-        //     }
-        //     this.state.scrollView.currentPage = nextPage;
-        //     // 更新 this.state 中 currentPage 的值
-        //     const offSetX = nextPage * Dimensions.get('window').width;
-        //     // 计算 ScrollView 滚动的 X 轴偏移量（因为是横向滚动）
-        //     this.refs.scrollView.scrollResponderScrollTo({
-        //         x: offSetX,
-        //         y: 0, animated: true
-        //     });
-        // }, 2000); // 设置定时器的间隔为 2s
     }
 
 }
@@ -335,5 +278,25 @@ const styles = StyleSheet.create({
 
     wrapper: {
         height: 100
+    },
+});
+
+//生成路由关系
+export const ModalStack = StackNavigator({
+    Home: {
+        //对应界面MyHomeScreen
+        screen: Home,
+        navigationOptions: ({navigation}) => ({
+            headerStyle: {
+                display: 'none'
+            }
+        })
+    },
+    Detail: {
+        screen: Detail,
+        navigationOptions: ({navigation}) => ({
+            headerTitle: '详情'
+        })
+
     },
 });

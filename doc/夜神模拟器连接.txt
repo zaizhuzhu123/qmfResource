@@ -36,3 +36,8 @@ yarn add watchman
 Error:Execution failed for task ':app:processDebugResources'.
 > java.io.IOException: Could not delete path 
 解决方法 进入项目文件夹下手动删除android\app\build文件夹内的所有文件后再次运行
+
+生成APK
+gradlew assembleRelease
+如果你没有react.gradle文件：
+react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/

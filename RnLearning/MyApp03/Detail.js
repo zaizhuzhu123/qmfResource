@@ -1,6 +1,6 @@
-import {Component} from "react";
-import {Dimensions, Text, TouchableOpacity, View} from "react-native";
 import * as React from "react";
+import {Component} from "react";
+import {Text, View} from "react-native";
 
 export default class Detail extends Component {
     render() {
