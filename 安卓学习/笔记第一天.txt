@@ -1,0 +1,35 @@
+第一天
+杀死服务adb kill-server
+开启服务adb start-server
+安装	adb install 路径
+卸载	adb uninstall 包名
+操作目录adb shell 
+放入文件adb push 文件路径 目标目录
+提取文件adb pull 目标文件路径
+
+match_parent 填充父窗体
+wrap_content 有多宽占多宽
+
+url 统一资源定位符
+uri 统一资源标识符 自己定义的路径
+
+按钮的四种点击事件
+1、定义单独的接口
+2、定义匿名内部类
+3、实现onclickListener接口 重写onclick方法 通过view.getId区分点击元素
+4、在按钮布局文件中增加 onclick属性实现
+
+安卓五大布局
+1、线性布局 LineLayout orientation:h 水平 v 垂直
+2、相对布局 RelativeLayout 通过above\below\toLeftOf\toRightOf 设置相对关系
+3、帧布局 FrameLayout gravity 居中模式
+4、表格布局 TableLayout tabrow代表一行
+5、绝对布局 AbsouluteLayout
+
+EditText hint 提示信息
+
+安卓中的单位
+
+1、sp 只适用于文字大小
+2、dp 会根据屏幕分辨率进行计算 推荐使用
+3、px 像素 尽量避免使用
