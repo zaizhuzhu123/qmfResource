@@ -1,0 +1,27 @@
+﻿---------------------------安装jdk
+--yum  install  java-1.8.0-openjdk   java-1.8.0-openjdk-devel
+--vi /etc/profile 
+	末尾加上
+		#set java environment  
+		JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk-1.8.0.161-0.b14.el7_4.x86_64
+		PATH=$PATH:$JAVA_HOME/bin  
+		CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar  
+		export JAVA_HOME  CLASSPATH  PATH  
+	
+	保存
+--source  /etc/profile 
+--查看 echo $JAVA_HOME  
+
+--------------------------安装tomcat
+wget -c http://mirrors.shu.edu.cn/apache/tomcat/tomcat-7/v7.0.86/bin/apache-tomcat-7.0.86.tar.gz
+
+tar -zxvf apache-tomcat-7.0.70.tar.gz
+--------------------------安装mysql
+wget -i -c http://dev.mysql.com/get/mysql57-community-release-el7-10.noarch.rpm
+yum -y install mysql57-community-release-el7-10.noarch.rpm
+启动mysql服务 systemctl start  mysqld.service
+查看运行状态 systemctl status mysqld.service   
+找出mysql root账号的密码 grep "password" /var/log/mysqld.log      E>aa#eJ84:d<1
+进入数据库 mysql -u root -p
+设置新密码 ALTER USER 'root'@'localhost' IDENTIFIED BY 'new password';
+卸载 防止yum自动更新 yum -y remove mysql57-community-release-el7-10.noarch

@@ -1,0 +1,10 @@
+进入mysql bin
+拷贝my.ini 到mysql根目录
+1、运行 mysqld install 安装mysql服务
+2、net start mysql 启动服务
+3、mysql -u root -p 进入mysql 回车确定 初始没有密码
+4、use mysql; 切换至系统数据库
+5、update user set host = '%' where user = 'root'; 让远程可以使用root账号登录
+6、FLUSH PRIVILEGES; 刷新配置
+7、update user set password=password('123') where user='root'; 修改root密码
+8、FLUSH PRIVILEGES; 刷新配置 到此 可以使用远程连接了

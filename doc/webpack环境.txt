@@ -14,3 +14,6 @@ npm install awesome-typescript-loader --save-dev
 npm i typescript
 //Æô¶¯¶¯Ì¬±àÒë
 npm run start
+
+npm uninstall webpack -g
+npm install webpack@3.10.0 -g
