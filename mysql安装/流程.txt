@@ -8,3 +8,7 @@
 6、FLUSH PRIVILEGES; 刷新配置
 7、update user set password=password('123') where user='root'; 修改root密码
 8、FLUSH PRIVILEGES; 刷新配置 到此 可以使用远程连接了
+
+//开启logbin 日志 用于数据恢复
+在my.ini 中增加 log-bin=../logs/log_bin 重启mysql   默认路径为data下面
+并在 mysql目录中 创建logs文件夹 该文件夹与data文件夹同级
